@@ -50,3 +50,26 @@ export function extractJobTitle(text: string): string | null {
   );
   return found || null;
 }
+export function extractName(text: string): string {
+  const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+  return lines[0] || "Unknown";
+}
+
+export function extractEmail(text: string): string | null {
+  const match = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+  return match ? match[0] : null;
+}
+
+export function extractEducation(text: string): string | null {
+  const degrees = [
+    "B.Tech", "B.E", "M.Tech", "MCA", "BCA", "B.Sc", "M.Sc",
+    "Bachelor", "Master", "MBA", "PhD", "Diploma"
+  ];
+  const found = degrees.find(d => text.toLowerCase().includes(d.toLowerCase()));
+  return found || null;
+}
+
+export function extractSummary(text: string): string {
+  const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+  return lines.slice(1, 4).join(" ");
+}

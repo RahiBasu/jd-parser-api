@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import parseRouter from "./routes/parse";
+import resumeRouter from "./routes/resume";
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", parseRouter);
+app.use("/api/resume", resumeRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
