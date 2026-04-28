@@ -1,0 +1,1 @@
+ALTER TABLE "ParsedJob" ADD COLUMN "userId" TEXT NOT NULL DEFAULT 'legacy';

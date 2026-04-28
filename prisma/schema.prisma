@@ -9,6 +9,7 @@ datasource db {
 
 model ParsedJob {
   id          Int      @id @default(autoincrement())
+  userId      String   @default("legacy")
   raw_text    String
   job_title   String?
   skills      String[]
@@ -17,4 +18,6 @@ model ParsedJob {
   location    String?
   work_type   String
   created_at  DateTime @default(now())
+
+  @@index([userId])
 }

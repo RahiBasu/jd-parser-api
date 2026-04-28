@@ -8,12 +8,15 @@ import {
   extractEducation,
   extractSummary,
 } from "../utils/extractor";
+import { requireAuth } from "../middleware/requireAuth";
 
 const router = Router();
 
 const resumeSchema = z.object({
   text: z.string().min(20, "Too short").max(10000, "Too long"),
 });
+
+router.use(requireAuth);
 
 router.post("/parse", async (req: Request, res: Response) => {
   const validation = resumeSchema.safeParse(req.body);
